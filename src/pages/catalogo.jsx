@@ -7,12 +7,13 @@ import { useState } from "react";
 const Catalogo = () => {
 
   const [selectedOption, setSelectedOption] = useState('todos');
+  const [selectedOrder, setSelectedOrder] = useState('original');
 
   return (
     <div className="h-full bg-[#F3F5F6]">
       <Navegacao />
-      <Filtro selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
-      <Produtos selectedOption={selectedOption}/>
+      <Filtro selectedOption={selectedOption} setSelectedOption={setSelectedOption} selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder}/>
+      <Produtos selectedOption={selectedOption} selectedOrder={selectedOrder}/>
       <Paginacao />
     </div>
   );

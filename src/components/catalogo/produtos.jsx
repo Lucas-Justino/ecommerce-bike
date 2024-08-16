@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./card";
 
-const Produtos = ({ selectedOption }) => {
+const Produtos = ({ selectedOption, selectedOrder }) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -26,12 +26,25 @@ const Produtos = ({ selectedOption }) => {
       ? produtos
       : produtos.filter((produto) => produto.brand.toLowerCase() === selectedOption.toLowerCase());
 
+  const produtosOrdenados = (() => {
+    switch (selectedOrder) {
+      case 'marca':
+        return produtosFiltrados.slice().sort((a, b) => a.brand.localeCompare(b.brand));
+      case 'valor':
+        return produtosFiltrados.slice().sort((a, b) => a.price - b.price);
+      case 'original':
+        return produtosFiltrados;
+      default:
+        return produtosFiltrados;
+    }
+  })();
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 px-36 pt-8">
-      {produtosFiltrados.length === 0 ? (
+      {produtosOrdenados.length === 0 ? (
         <p className="text-[#123952] font-bold">Nenhum produto encontrado</p>
       ) : (
-        produtosFiltrados.map((produto) => (
+        produtosOrdenados.map((produto) => (
           <Card
             key={produto.id}
             id={produto.id}
