@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Carrinho />} />
+        <Route path="/" element={<Catalogo />} />
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/produto" element={<Produto />} />
