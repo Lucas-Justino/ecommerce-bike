@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const Filtro = () => {
-  const [selectedOption, setSelectedOption] = useState('todos'); // Estado para rastrear a opção selecionada
+const Filtro = ({selectedOption, setSelectedOption}) => {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);

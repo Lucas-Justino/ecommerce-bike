@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./card";
 
-const Produtos = () => {
+const Produtos = ({ selectedOption }) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const Produtos = () => {
           "https://api-frontend-test.orbesoft.com.br/api/products"
         );
         setProdutos(response.data.content);
-        console.log(response.data.content);
+        // console.log(response.data.content);
       } catch (error) {
         console.log("Erro ao carregar os produtos");
       }
@@ -21,18 +21,27 @@ const Produtos = () => {
     fetchProducts();
   }, []);
 
+  const produtosFiltrados =
+    selectedOption === "todos"
+      ? produtos
+      : produtos.filter((produto) => produto.brand.toLowerCase() === selectedOption.toLowerCase());
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 px-36 pt-8">
-      {produtos.map((produto) => (
-        <Card
-          key={produto.id}
-          id={produto.id}
-          imagem={produto.images[0].url}
-          marca={produto.brand}
-          nome={produto.name}
-          valor={produto.price}
-        />
-      ))}
+      {produtosFiltrados.length === 0 ? (
+        <p className="text-[#123952] font-bold">Nenhum produto encontrado</p>
+      ) : (
+        produtosFiltrados.map((produto) => (
+          <Card
+            key={produto.id}
+            id={produto.id}
+            imagem={produto.images[0].url}
+            marca={produto.brand}
+            nome={produto.name}
+            valor={produto.price}
+          />
+        ))
+      )}
     </div>
   );
 };
