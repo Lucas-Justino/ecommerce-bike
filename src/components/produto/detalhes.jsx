@@ -13,11 +13,13 @@ const Detalhes = () => {
   const [descricao, setDescricao] = useState('');
   const [marca, setMarca] = useState('');
   const [valor, setValor] = useState(0);
+  const [produto, setProduto] = useState(null);
 
   useEffect(() => {
     const fetchProduto = async () => {
       try {
         const response = await axios.get(`https://api-frontend-test.orbesoft.com.br/api/products/${id}`);
+        setProduto(response.data);
         setImagens(response.data.images);
         setNome(response.data.name);
         setDescricao(response.data.description);
@@ -36,7 +38,7 @@ const Detalhes = () => {
   return (
     <div className="flex px-36 gap-40 mt-4">
       <Imagem imagens={imagens} />
-      <Descricao descricao={descricao} marca={marca} nome={nome} valor={valor} />
+      <Descricao produto={produto} descricao={descricao} marca={marca} nome={nome} valor={valor} />
     </div>
   );
 };

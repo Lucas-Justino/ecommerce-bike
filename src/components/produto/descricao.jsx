@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -5,8 +6,12 @@ import {
   FaInstagram,
 } from "react-icons/fa6";
 import { FiShoppingBag } from "react-icons/fi";
+import { CarrinhoContext } from "../context/carrinhoContext";
 
-const Descricao = ({ nome, marca, valor, descricao }) => {
+const Descricao = ({ produto, nome, marca, valor, descricao }) => {
+
+  const { adicionarAoCarrinho } = useContext(CarrinhoContext)
+
   return (
     <div className="flex flex-col text-[#617480] justify-between items-start">
       <div className="flex flex-col gap-4">
@@ -28,7 +33,8 @@ const Descricao = ({ nome, marca, valor, descricao }) => {
           <FaInstagram color="#115D8C" />
         </div>
       </div>
-      <button className="flex justify-center items-center gap-6 bg-[#F25D27] text-white h-10 w-[340px] px-10 rounded-[4px] font-semibold">
+      <button className="flex justify-center items-center gap-6 bg-[#F25D27] text-white h-10 w-[340px] px-10 rounded-[4px] font-semibold"
+        onClick={() => {adicionarAoCarrinho(produto)}}>
         <FiShoppingBag />
         ADICIONAR AO CARRINHO
       </button>

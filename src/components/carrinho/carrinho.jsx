@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import Card from "./card";
 import Cupom from "./cupom";
+import { CarrinhoContext } from "../context/carrinhoContext";
 
 const CarrinhoProdutos = () => {
+
+  const {carrinho} = useContext(CarrinhoContext);
+
   return (
     <div className="flex mx-36 gap-40">
       <div className="flex flex-col">
@@ -11,10 +16,9 @@ const CarrinhoProdutos = () => {
             Total (3 produtos) <span className="font-semibold">R$ VALOR</span>
           </span>
         </div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {carrinho.map((produto, index) => (
+          <Card key={index} imagem={produto.images[0].url} nome={produto.name} valor={produto.price} marca={produto.brand}/>
+        ))}
       </div>
       <Cupom />
     </div>

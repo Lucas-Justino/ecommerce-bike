@@ -4,11 +4,12 @@ import Voltar from "../components/produto/voltar";
 
 const Carrinho = () => {
   return (
-    <div className="h-full bg-[#F3F5F6]">
+    <div className="min-h-screen bg-[#F3F5F6] flex flex-col">
       <Navegacao />
       <Voltar />
-      <CarrinhoProdutos />
-
+      <div className="flex-1">
+        <CarrinhoProdutos />
+      </div>
     </div>
   );
 };
