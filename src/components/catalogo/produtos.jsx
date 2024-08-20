@@ -1,30 +1,33 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Card from "./card";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Card from './card';
 
-const Produtos = ({ selectedOption, selectedOrder }) => {
+const Produtos = ({ selectedOption, selectedOrder, filtro }) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://api-frontend-test.orbesoft.com.br/api/products"
+          'https://api-frontend-test.orbesoft.com.br/api/products'
         );
         setProdutos(response.data.content);
-        // console.log(response.data.content);
       } catch (error) {
-        console.log("Erro ao carregar os produtos");
+        console.log('Erro ao carregar os produtos');
       }
     };
 
     fetchProducts();
   }, []);
 
-  const produtosFiltrados =
-    selectedOption === "todos"
-      ? produtos
-      : produtos.filter((produto) => produto.brand.toLowerCase() === selectedOption.toLowerCase());
+  const produtosFiltrados = produtos
+    .filter((produto) => 
+      produto.brand.toLowerCase().includes(filtro.toLowerCase()) || 
+      produto.name.toLowerCase().includes(filtro.toLowerCase())
+    )
+    .filter((produto) => 
+      selectedOption === 'todos' || produto.brand.toLowerCase() === selectedOption.toLowerCase()
+    );
 
   const produtosOrdenados = (() => {
     switch (selectedOrder) {
