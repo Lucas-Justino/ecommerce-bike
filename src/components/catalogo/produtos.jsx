@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from './card';
 
-const Produtos = ({ selectedOption, selectedOrder, filtro }) => {
+const Produtos = ({ selectedOption, selectedOrder, filtro, currentPage, productsPerPage }) => {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -21,11 +21,11 @@ const Produtos = ({ selectedOption, selectedOrder, filtro }) => {
   }, []);
 
   const produtosFiltrados = produtos
-    .filter((produto) => 
-      produto.brand.toLowerCase().includes(filtro.toLowerCase()) || 
+    .filter((produto) =>
+      produto.brand.toLowerCase().includes(filtro.toLowerCase()) ||
       produto.name.toLowerCase().includes(filtro.toLowerCase())
     )
-    .filter((produto) => 
+    .filter((produto) =>
       selectedOption === 'todos' || produto.brand.toLowerCase() === selectedOption.toLowerCase()
     );
 
@@ -42,12 +42,17 @@ const Produtos = ({ selectedOption, selectedOrder, filtro }) => {
     }
   })();
 
+  // Paginação
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = produtosOrdenados.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 px-36 pt-8">
-      {produtosOrdenados.length === 0 ? (
+      {currentProducts.length === 0 ? (
         <p className="text-[#123952] font-bold">Nenhum produto encontrado</p>
       ) : (
-        produtosOrdenados.map((produto) => (
+        currentProducts.map((produto) => (
           <Card
             key={produto.id}
             id={produto.id}
