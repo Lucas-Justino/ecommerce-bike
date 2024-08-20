@@ -36,7 +36,7 @@ const Detalhes = () => {
   }, [id]);
 
   return (
-    <div className="flex px-36 gap-40 mt-4">
+    <div className="flex flex-col lg:flex-row px-6 lg:px-36 gap-4 lg:gap-10 mt-4">
       <Imagem imagens={imagens} />
       <Descricao produto={produto} descricao={descricao} marca={marca} nome={nome} valor={valor} />
     </div>

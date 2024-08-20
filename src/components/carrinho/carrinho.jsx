@@ -12,7 +12,7 @@ const CarrinhoProdutos = () => {
 
   return (
     <div className="flex mx-36 gap-40 justify-between">
-      <div className="flex flex-col">
+      <div className="flex flex-col w-[600px] xl:w-[500px] lg:w-[400px]">
         <div className="flex flex-col mt-4 gap-2">
           {carrinho.length === 0 ? (
             <span className="text-[#123952] font-bold text-xl">

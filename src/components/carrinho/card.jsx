@@ -19,7 +19,7 @@ const Card = ({ imagem, nome, valor, marca, id, quantidade }) => {
       <div className="flex mt-8 gap-8">
         <img className="rounded-lg" src={imagem} height={200} width={200} alt="" />
         <div className="flex flex-col gap-2">
-          <div className="flex w-[600px] justify-between text-[#123952] font-bold text-xl">
+          <div className="flex 2xl:w-[600px] xl:w-[400px] justify-between text-[#123952] font-bold text-xl">
             <span>{nome}</span>
             <span>R$ {valor}</span>
           </div>
@@ -38,7 +38,7 @@ const Card = ({ imagem, nome, valor, marca, id, quantidade }) => {
           </div>
         </div>
       </div>
-      <div className="h-[1px] w-[830px] bg-[#D1D1D8] mt-8"></div>
+      <div className="h-[1px] 2xl:w-[830px] xl:w-[640px] lg:w-[500px] bg-[#D1D1D8] mt-8"></div>
     </div>
   );
 };
