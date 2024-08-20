@@ -4,7 +4,7 @@ import Cupom from "./cupom";
 import { CarrinhoContext } from "../context/carrinhoContext";
 
 const CarrinhoProdutos = () => {
-  const { carrinho, atualizarQuantidade } = useContext(CarrinhoContext);
+  const { carrinho, atualizarQuantidade, limparCarrinho } = useContext(CarrinhoContext);
 
   const calcularValorTotal = () => {
     return carrinho.reduce((total, produto) => total + produto.price * produto.quantidade, 0).toFixed(2);
@@ -43,7 +43,7 @@ const CarrinhoProdutos = () => {
           />
         ))}
       </div>
-      <Cupom carrinho={carrinho} valor={calcularValorTotal()} />
+      <Cupom carrinho={carrinho} valor={calcularValorTotal()} limparCarrinho={limparCarrinho} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ const BarraDePesquisa = ({ filtro, setFiltro }) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    setInput(filtro);
+    setInput(filtro || '');
   }, [filtro]);
 
   const handleChange = (e) => {
