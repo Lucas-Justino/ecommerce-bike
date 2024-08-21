@@ -21,3 +21,7 @@ Este projeto é uma aplicação de Ecommerce de bicicletas desenvolvida em React
 4. Inicie a aplicação com o comando:
    ```bash
    npm run dev
+
+## Acesse o Projeto
+
+O projeto está disponível online em: [Ecommerce Bike](https://ecommerce-bike-oeqd6wnvl-lucas-justinos-projects.vercel.app)
