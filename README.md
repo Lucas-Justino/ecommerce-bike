@@ -8,6 +8,7 @@ Este projeto é uma aplicação de Ecommerce de bicicletas desenvolvida em React
 - **JavaScript**
 - **Axios**
 - **TailwindCSS**
+- **Vite**
 - **DaisyUI**
 - **React Router DOM**
 
